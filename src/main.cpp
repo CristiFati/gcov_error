@@ -1,7 +1,4 @@
-#include "lib.hpp"
-
 #include <iostream>
-
 #include <llvm/ADT/StringRef.h>
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/MCJIT.h>
@@ -18,7 +15,7 @@ void foo() {
   std::cout << "foo()\n";
 }
 
-int do_llvm_test() {
+int main() {
   llvm::InitializeNativeTarget();
   llvm::InitializeNativeTargetAsmPrinter();
   llvm::InitializeNativeTargetAsmParser();
