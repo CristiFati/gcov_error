@@ -17,15 +17,15 @@ matrix:
   include:
   - name: "LLVM"
     script:
-    - cmake .. -DCMAKE_BUILD_TYPE=Debug -DLINK_WITH_LLVM=YES
+    - cmake .. -DLINK_WITH_LLVM=YES
   - name: "Coverage"
     script:
     - export CXXFLAGS="--coverage"
-    - cmake .. -DCMAKE_BUILD_TYPE=Debug
+    - cmake ..
   - name: "LLVM + Coverage"
     script:
     - export CXXFLAGS="--coverage"
-    - cmake .. -DCMAKE_BUILD_TYPE=Debug -DLINK_WITH_LLVM=YES
+    - cmake .. -DLINK_WITH_LLVM=YES
 
 after_script:
 - make VERBOSE=1
