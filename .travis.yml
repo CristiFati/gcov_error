@@ -13,7 +13,7 @@ matrix:
     script:
     - export CXX=g++-7
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Debug
+    - cmake -DCMAKE_BUILD_TYPE=Debug ..
     - make VERBOSE=1
     - test/suite
   - os: linux
@@ -22,12 +22,12 @@ matrix:
       apt:
         sources: ["ubuntu-toolchain-r-test", "llvm-toolchain-trusty-7"]
         packages: ["g++-7", "llvm-7-dev"]
-    install:
-    - pip install --user cpp-coveralls
+ #   install:
+ #   - pip install --user cpp-coveralls
     script:
     - export CXX=g++-7
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Debug -DTEST_COVERAGE=YES
+    - cmake -DCMAKE_BUILD_TYPE=Debug -DTEST_COVERAGE=YES ..
     - make VERBOSE=1
     - test/suite
  #   after_success:
