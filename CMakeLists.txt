@@ -29,11 +29,9 @@ target_compile_definitions(Test
 
 if(LINK_WITH_LLVM)
 
-llvm_map_components_to_libnames(llvm_libs core)
-
 target_link_libraries(Test
         PUBLIC
-        ${llvm_libs}
+        LLVMCore
 )
 
 endif()
