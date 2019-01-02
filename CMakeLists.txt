@@ -13,7 +13,7 @@ target_compile_definitions(Test
         ${LLVM_DEFINITIONS}
 )
 
-llvm_map_components_to_libnames(llvm_libs core native mcjit asmprinter asmparser linker instrumentation vectorize ipo)
+llvm_map_components_to_libnames(llvm_libs core native mcjit asmprinter asmparser)
 
 target_link_libraries(Test
         PUBLIC
@@ -33,7 +33,3 @@ target_compile_features(Test
 set_target_properties(Test
         PROPERTIES OUTPUT_NAME "test"
 )
-
-if(TEST_COVERAGE)
-        set(CMAKE_CXX_FLAGS "-DNDEBUG -DTEST_COVERAGE -O0 --coverage -fno-inline -fno-inline-small-functions -fno-default-inline")
-endif()
