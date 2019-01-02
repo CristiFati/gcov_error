@@ -10,16 +10,14 @@ addons:
 
 matrix:
   include:
-  - script:
-    - export CXX=g++-7
-    - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Debug ..
-    - make VERBOSE=1
-    - ./test
-  - script:
-    - export CXX=g++-7
-    - export CXXFLAGS="-DNDEBUG -DTEST_COVERAGE -O0 --coverage -fno-inline -fno-inline-small-functions -fno-default-inline"
-    - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Debug ..
-    - make VERBOSE=1
-    - ./test
+  - name: "Regular"
+  - name: "Coverage"
+    before_script:
+    - export CXXFLAGS="-DNDEBUG -O0 --coverage -fno-inline -fno-inline"
+
+script:
+- export CXX=g++-7
+- cd build
+- cmake -DCMAKE_BUILD_TYPE=Debug ..
+- make VERBOSE=1
+- ./test
