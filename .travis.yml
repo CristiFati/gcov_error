@@ -25,4 +25,4 @@ matrix:
 
 after_script:
 - make VERBOSE=1
-- ./test
+- ./Test
