@@ -13,7 +13,7 @@ matrix:
   - name: "Regular"
   - name: "Coverage"
     before_script:
-    - export CXXFLAGS="-DNDEBUG -O0 --coverage"
+    - export CXXFLAGS="-DNDEBUG --coverage"
 
 script:
 - export CXX=g++-7
