@@ -1,0 +1,36 @@
+language: cpp
+sudo: false
+dist: trusty
+
+matrix:
+  include:
+  - os: linux
+    compiler: clang
+    addons:
+      apt:
+        sources: ["ubuntu-toolchain-r-test", "llvm-toolchain-trusty-7"]
+        packages: ["clang-7", "g++-7", "llvm-7-dev"]
+    env:
+    - COMPILER=clang++-7
+  - os: linux
+    compiler: gcc
+    addons:
+      apt:
+        sources: ["ubuntu-toolchain-r-test", "llvm-toolchain-trusty-7"]
+        packages: ["g++-7", "llvm-7-dev"]
+    env:
+    - COMPILER=g++-7
+    - DEFINITION="-DTEST_COVERAGE=YES"
+    install:
+    - pip install --user cpp-coveralls
+ #   after_success:
+ #   - coveralls --gcov gcov-7 --gcov-options '\-lp' --root ${TRAVIS_BUILD_DIR} --build-root ${TRAVIS_BUILD_DIR}/build -e Examples -e test -e CLI --extension cpp --extension hpp -i src -i include
+
+before_install:
+- export CXX=${COMPILER}
+
+script:
+- cd build
+- cmake -DCMAKE_BUILD_TYPE=Debug ${DEFINITION} ..
+- make VERBOSE=1
+- test/suite
