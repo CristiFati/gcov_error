@@ -13,7 +13,7 @@ target_compile_definitions(Test
         ${LLVM_DEFINITIONS}
 )
 
-llvm_map_components_to_libnames(llvm_libs core native mcjit asmprinter asmparser)
+llvm_map_components_to_libnames(llvm_libs core)
 
 target_link_libraries(Test
         PUBLIC
