@@ -9,6 +9,7 @@ addons:
     packages: ["g++-7", "llvm-7-dev"]
 
 before_script:
+- set -e
 - export CXX=g++-7
 - cd build
 
