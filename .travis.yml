@@ -2,27 +2,21 @@ language: cpp
 sudo: false
 dist: trusty
 
+os: linux
+addons:
+  apt:
+    sources: ["ubuntu-toolchain-r-test", "llvm-toolchain-trusty-7"]
+    packages: ["g++-7", "llvm-7-dev"]
+
 matrix:
   include:
-  - os: linux
-    compiler: gcc
-    addons:
-      apt:
-        sources: ["ubuntu-toolchain-r-test", "llvm-toolchain-trusty-7"]
-        packages: ["g++-7", "llvm-7-dev"]
-    script:
+  - script:
     - export CXX=g++-7
     - cd build
     - cmake -DCMAKE_BUILD_TYPE=Debug ..
     - make VERBOSE=1
     - ./test
-  - os: linux
-    compiler: gcc
-    addons:
-      apt:
-        sources: ["ubuntu-toolchain-r-test", "llvm-toolchain-trusty-7"]
-        packages: ["g++-7", "llvm-7-dev"]
-    script:
+  - script:
     - export CXX=g++-7
     - export CXXFLAGS="-DNDEBUG -DTEST_COVERAGE -O0 --coverage -fno-inline -fno-inline-small-functions -fno-default-inline"
     - cd build
