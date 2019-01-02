@@ -8,6 +8,10 @@ add_executable(Test
         "main.cpp"
 )
 
+set_target_properties(Test
+        PROPERTIES OUTPUT_NAME "test"
+)
+
 target_compile_features(Test
         PUBLIC
         cxx_std_17
@@ -18,16 +22,12 @@ target_include_directories(Test
         ${LLVM_INCLUDE_DIRS}
 )
 
-set_target_properties(Test
-        PROPERTIES OUTPUT_NAME "test"
-)
-
-if(LINK_WITH_LLVM)
-
 target_compile_definitions(Test
         PUBLIC
         ${LLVM_DEFINITIONS}
 )
+
+if(LINK_WITH_LLVM)
 
 llvm_map_components_to_libnames(llvm_libs core)
 
