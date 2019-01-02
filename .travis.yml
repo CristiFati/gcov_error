@@ -12,8 +12,7 @@ matrix:
   include:
   - name: "Regular"
   - name: "Coverage"
-    before_script:
-    - export CXXFLAGS="--coverage"
+    before_script: export CXXFLAGS="--coverage"
 
 script:
 - export CXX=g++-7

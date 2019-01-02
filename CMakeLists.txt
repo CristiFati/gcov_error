@@ -5,7 +5,7 @@ find_package(LLVM 7.0.0 REQUIRED CONFIG)
 message(STATUS "Found LLVM: ${LLVM_DIR} ${LLVM_PACKAGE_VERSION}")
 
 add_executable(Test
-        "src/main.cpp"
+        "main.cpp"
 )
 
 target_compile_definitions(Test
