@@ -8,9 +8,9 @@ add_executable(Test
     "main.cpp"
 )
 
-#target_compile_features(Test
-#    PUBLIC cxx_std_17
-#)
+target_compile_features(Test
+    PUBLIC cxx_std_17
+)
 
 target_include_directories(Test
     PUBLIC ${LLVM_INCLUDE_DIRS}
