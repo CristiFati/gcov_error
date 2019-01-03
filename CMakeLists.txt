@@ -33,10 +33,13 @@ if(LINK_WITH_LLVM)
         OUTPUT_VARIABLE _COLLECT_TMP_VAR
     )
     get_filename_component(_GAINARIE_GCC_DEFAULT_PATH ${_COLLECT_TMP_VAR} DIRECTORY)
-    link_directories(
-        BEFORE ${_GAINARIE_GCC_DEFAULT_PATH}
+    message(INFO " _GAINARIE_GCC_DEFAULT_PATH: " ${_GAINARIE_GCC_DEFAULT_PATH})
+    link_directories(BEFORE
+        ${_GAINARIE_GCC_DEFAULT_PATH}1
     )
-
+    target_link_directories(Test BEFORE
+        ${_GAINARIE_GCC_DEFAULT_PATH}2
+    )
     target_link_libraries(Test
         PUBLIC LLVMCore
     )
