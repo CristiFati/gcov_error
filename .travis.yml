@@ -31,4 +31,5 @@ after_script:
 - (nm -S ./Test | grep __gcov_exit) || echo ./Test
 - #for f in "/usr/lib/x86_64-linux-gnu/libstdc++.so.6" "/lib/x86_64-linux-gnu/libgcc_s.so.1" "/lib/x86_64-linux-gnu/libc.so.6" "/lib/x86_64-linux-gnu/libm.so.6"; do (nm -S ${f} 2>/dev/null | grep __gcov_exit) || echo ${f}; done
 - #for f in $(ls /usr/lib/llvm-7/lib); do (nm -S /usr/lib/llvm-3.8/lib/${f} 2>/dev/null | grep __gcov_exit) || echo ${f}; done
--  for f in $("/lib/x86_64-linux-gnu/*gcov*" 2>/dev/null); do (nm -S ${f} 2>/dev/null | grep __gcov_exit) || echo ${f}; done
+-  for f in $(ls /lib/x86_64-linux-gnu/*gcov* 2>/dev/null); do (nm -S ${f} 2>/dev/null | grep __gcov_exit) || echo ${f}; done
+- apt list | grep installed | grep libgcc | grep dev
