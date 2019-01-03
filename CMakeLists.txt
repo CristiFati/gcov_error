@@ -26,7 +26,15 @@ message(INFO " CMAKE_CXX_IMPLICIT_LINK_LIBRARIES: "${CMAKE_CXX_IMPLICIT_LINK_LIB
 
 
 if(LINK_WITH_LLVM)
+    set(_COLLECT_LTO_WRAPPER_TEXT "COLLECT_LTO_WRAPPER=")
+    execute_process(
+        COMMAND bash -c "gcc -v 2>&1 | grep ${_COLLECT_LTO_WRAPPER_TEXT} | sed s/${_COLLECT_LTO_WRAPPER_TEXT}//"
+        OUTPUT_VARIABLE _COLLECT_TMP_VAR
+    )
+    get_filename_component(_GAINARIE_GCC_DEFAULT_PATH ${_COLLECT_TMP_VAR} DIRECTORY)
+    
     target_link_libraries(Test
+        PUBLIC -L${_GAINARIE_GCC_DEFAULT_PATH}
         PUBLIC LLVMCore
     )
 endif()
