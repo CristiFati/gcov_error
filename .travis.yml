@@ -33,4 +33,6 @@ after_script:
 - #for f in $(ls /usr/lib/llvm-7/lib); do (nm -S /usr/lib/llvm-3.8/lib/${f} 2>/dev/null | grep __gcov_exit) || echo ${f}; done
 - #for f in $(ls /lib/x86_64-linux-gnu/*gcov* 2>/dev/null); do (nm -S ${f} 2>/dev/null | grep __gcov_exit) || echo ${f}; done
 - #apt list | grep installed | grep libgcc | grep dev
-- dpkg -L libgcc-7-dev
+- #dpkg -L libgcc-7-dev
+- _GCOV_LIB=/usr/lib/gcc/x86_64-linux-gnu/7/libgcov.a
+- (nm -S ${_GCOV_LIB} 2>/dev/null | grep __gcov_exit) || echo ${_GCOV_LIB}
