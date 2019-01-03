@@ -21,7 +21,7 @@ matrix:
   - name: "Coverage"
     script: cmake .. -DCMAKE_CXX_FLAGS="--coverage"
   - name: "LLVM + Coverage"
-    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage" -DLINK_WITH_LLVM=YES
+    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage -fprofile-arcs" -DLINK_WITH_LLVM=YES
 
 after_script:
 - make VERBOSE=1
