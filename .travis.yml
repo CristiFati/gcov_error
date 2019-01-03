@@ -19,17 +19,15 @@ matrix:
   - name: "LLVM"
     script: cmake ..                                -DLINK_WITH_LLVM=YES
   - name: "Coverage"
-    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage -Wl,-lgcov"
+    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage"
   - name: "LLVM + Coverage"
-    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage -Wl,-lgcov" -DLINK_WITH_LLVM=YES
+    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage" -DLINK_WITH_LLVM=YES
 
 after_script:
 - make VERBOSE=1
 - ./Test
 - ldd ./Test
 - nm -S CMakeFiles/Test.dir/main.cpp.o
-- (nm -S /usr/lib/llvm-7/lib/libLLVMCore.a | grep __gcov_exit) || echo "NO OUTPUT"
-- (nm -S /usr/lib/llvm-7/lib/libLLVMBinaryFormat.a | grep __gcov_exit) || echo "NO OUTPUT"
-- (nm -S /usr/lib/llvm-7/lib/libLLVMSupport.a | grep __gcov_exit) || echo "NO OUTPUT"
-- (nm -S /usr/lib/llvm-7/lib/libLLVMDemangle.a | grep __gcov_exit) || echo "NO OUTPUT"
-- ls -al /usr/lib/llvm-7/lib/lib*
+- (nm -S ./Test | grep __gcov_exit) || echo ./Test
+- for f in (/usr/lib/x86_64-linux-gnu/libstdc++.so.6 /lib/x86_64-linux-gnu/libgcc_s.so.1 /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libm.so.6); do (nm -S ${f} | grep __gcov_exit) || echo ${f}; done
+- for f in $(ls /usr/lib/llvm-7/lib); do (nm -S /usr/lib/llvm-3.8/lib/${f} | grep __gcov_exit) || echo ${f}; done
