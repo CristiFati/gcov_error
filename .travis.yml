@@ -10,18 +10,18 @@ addons:
 
 before_script:
 - set -e
-- export CXX=g++-7 -v
+- export CXX=g++-7
 - mkdir build
 - cd build
 
 matrix:
   include:
   - name: "LLVM"
-    script: cmake ..                                -DLINK_WITH_LLVM=YES
+    script: cmake .. -DCMAKE_CXX_FLAGS="           -v" -DLINK_WITH_LLVM=YES
   - name: "Coverage"
-    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage"
+    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage -v"
   - name: "LLVM + Coverage"
-    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage" -DLINK_WITH_LLVM=YES
+    script: cmake .. -DCMAKE_CXX_FLAGS="--coverage -v" -DLINK_WITH_LLVM=YES
 
 after_script:
 - make VERBOSE=1
