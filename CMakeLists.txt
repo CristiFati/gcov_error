@@ -20,8 +20,12 @@ target_compile_definitions(Test
     PUBLIC ${LLVM_DEFINITIONS}
 )
 
+message(INFO " CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES0: " ${CMAKE_<LANG>_IMPLICIT_LINK_DIRECTORIES})
+
 if(LINK_WITH_LLVM)
     target_link_libraries(Test
         PRIVATE LLVMCore
     )
 endif()
+
+message(INFO " CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES1: " ${CMAKE_<LANG>_IMPLICIT_LINK_DIRECTORIES})
