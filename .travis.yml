@@ -10,7 +10,7 @@ addons:
 
 before_script:
 - set -e
-- export CXX=g++-7
+- export CXX=g++
 - mkdir build
 - cd build
 
