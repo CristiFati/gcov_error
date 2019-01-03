@@ -27,9 +27,9 @@ after_script:
 - make VERBOSE=1
 - ./Test
 - ldd ./Test
-- nm -S CMakeFiles/Test.dir/main.cpp.o | grep _GLOBAL__sub_D_00100_1__Z7runTestv
-- nm -S CMakeFiles/Test.dir/main.cpp.o | grep __gcov_exit
-- nm -S /usr/lib/llvm-7/lib/libLLVMCore.a | grep __gcov_exit
-- nm -S /usr/lib/llvm-7/lib/libLLVMBinaryFormat.a | grep __gcov_exit
-- nm -S /usr/lib/llvm-7/lib/libLLVMSupport.a | grep __gcov_exit
-- nm -S /usr/lib/llvm-7/lib/libLLVMDemangle.a | grep __gcov_exit
+- (nm -S CMakeFiles/Test.dir/main.cpp.o | grep _GLOBAL__sub_D_00100_1__Z7runTestv) || echo "NO OUTPUT"
+- (nm -S CMakeFiles/Test.dir/main.cpp.o | grep __gcov_exit) || echo "NO OUTPUT"
+- (nm -S /usr/lib/llvm-7/lib/libLLVMCore.a | grep __gcov_exit) || echo "NO OUTPUT"
+- (nm -S /usr/lib/llvm-7/lib/libLLVMBinaryFormat.a | grep __gcov_exit) || echo "NO OUTPUT"
+- (nm -S /usr/lib/llvm-7/lib/libLLVMSupport.a | grep __gcov_exit) || echo "NO OUTPUT"
+- (nm -S /usr/lib/llvm-7/lib/libLLVMDemangle.a | grep __gcov_exit) || echo "NO OUTPUT"
