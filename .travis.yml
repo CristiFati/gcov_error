@@ -26,3 +26,4 @@ matrix:
 after_script:
 - make VERBOSE=1
 - ./Test
+ldd ./Test
