@@ -22,6 +22,6 @@ target_compile_definitions(Test
 
 if(LINK_WITH_LLVM)
     target_link_libraries(Test
-        PUBLIC LLVMCore
+        PRIVATE LLVMCore
     )
 endif()
