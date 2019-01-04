@@ -20,24 +20,17 @@ target_compile_definitions(Test
     PUBLIC ${LLVM_DEFINITIONS}
 )
 
-message(INFO " CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES0: " ${CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES})
-message(INFO " CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES: " ${CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES})
-message(INFO " CMAKE_CXX_IMPLICIT_LINK_LIBRARIES: " ${CMAKE_CXX_IMPLICIT_LINK_LIBRARIES})
-
-
 if(LINK_WITH_LLVM)
-    # Everything till target_link_libraries is to avoid hardcoding default libgcc path (/usr/lib/gcc/x86_64-linux-gnu/7)
+    # @TODO - cfati: Everything in this block is to avoid hardcoding default libgcc path (/usr/lib/gcc/x86_64-linux-gnu/7)
     set(_COLLECT_LTO_WRAPPER_TEXT "COLLECT_LTO_WRAPPER=")
     execute_process(
         COMMAND bash -c "$0 -v 2>&1 | grep ${_COLLECT_LTO_WRAPPER_TEXT} | sed s/${_COLLECT_LTO_WRAPPER_TEXT}//" "${CMAKE_CXX_COMPILER}"
         OUTPUT_VARIABLE _GAINARIE_COLLECT_TMP_VAR
     )
     get_filename_component(_GAINARIE_GCC_DEFAULT_PATH ${_GAINARIE_COLLECT_TMP_VAR} DIRECTORY)
-    message(INFO " _GAINARIE_GCC_DEFAULT_PATH: " ${_GAINARIE_GCC_DEFAULT_PATH})
-    #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-L${_GAINARIE_GCC_DEFAULT_PATH}")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${_GAINARIE_GCC_DEFAULT_PATH}")
-    set (GCCOPT "${GCCOPT} -L${_GAINARIE_GCC_DEFAULT_PATH}")
-    message(INFO " GCCOPT: " ${GCCOPT})
+    #set (GCCOPT "${GCCOPT} -L${_GAINARIE_GCC_DEFAULT_PATH}")
+    # @TOTO END
     target_link_libraries(Test
         PUBLIC LLVMCore
     )
