@@ -43,7 +43,7 @@ if(LINK_WITH_LLVM)
     )
     target_link_libraries(Test
         PUBLIC LLVMCore
-        PUBLIC ${_GAINARIE_GCC_DEFAULT_PATH}3
+        #PUBLIC ${_GAINARIE_GCC_DEFAULT_PATH}3
     )
     link_directories(BEFORE
         ${_GAINARIE_GCC_DEFAULT_PATH}2
